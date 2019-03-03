@@ -1,59 +1,7 @@
 const express=require("express");
 const router=express.Router();
 const Joi=require("joi");
-const mongoose = require("mongoose")
-//db connect
-const schema = new mongoose.Schema({
-    name : String,
-    author : String,
-    tags : [String],
-    date : {type : Date , default : Date.now },
-    ispublished : Boolean
-})
-
-async function InsertIntoDb(req){
-    mongoose.connect("mongodb://localhost:27017/playground",{ useNewUrlParser: true })
-    .then(()=>console.log("connected to mongo"))
-    .catch((err)=> console.log(`something went wrong ${err}`))
-
-    const Course = mongoose.model("Course",schema)
-    const course = new Course(req)
-    const result = await course.save()
-    console.log(result)
-    const closeResults= mongoose.disconnect()
-            .then((re)=> console.log(`close connection : ${re}`))
-    
-}
-
-
-async function QueryFromMongo(limit)
-{
-    mongoose.connect("mongodb://localhost:27017/playground",{ useNewUrlParser: true })
-        .then("connection for query mongo successfull")
-        .catch((err)=>console.log(err))
-
-        const Course = mongoose.model("Course",schema)
-        const result = await Course.find().limit(limit)
-        return result
-}
-
-
-//=============
-
-const courses=[
-    {
-        id: 1,
-        name: "book"
-    },
-    {
-        id: 2,
-        name: "copy"
-    },
-    {
-        id: 3,
-        name: "udemy"
-    }
-]
+const mongo = require("../utils/mongoutils")
 
 function validateSchema(course,verb)
 {
@@ -89,12 +37,14 @@ function validateSchema(course,verb)
 
 }
 
-// router.get("/",async (req,res)=>{
+router.get("/",async (req,res)=>{
 
-//    const result= await QueryFromMongo(4)
-//    res.send(result)
-//    console.log(`Get ${req.url}`);
-// })
+   const connection = await mongo.connect("mongodb://localhost:27017/playground")
+   const result= await mongo.get(4)
+   console.log("ageye",result)
+   res.send(result)
+   console.log(`Get ${req.url}`);
+})
 
 router.get("/:id",(req,res)=>{
     const course=courses.find(c => c.id === parseInt(req.params.id));
