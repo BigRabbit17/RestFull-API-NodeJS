@@ -20,8 +20,6 @@ async function InsertIntoDb(req){
     const course = new Course(req)
     const result = await course.save()
     console.log(result)
-    const closeResults= mongoose.disconnect()
-            .then((re)=> console.log(`close connection : ${re}`))
     return result
 }
 
@@ -31,6 +29,7 @@ async function QueryFromMongo(limit)
         const result = await Course.find().limit(limit)
         console.log(result)
         return result
+
 }
 
 async function QueryById(id)

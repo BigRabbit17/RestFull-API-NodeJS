@@ -2,17 +2,18 @@ const express=require("express");
 const router=express.Router();
 const mongo = require("../utils/mongoutils")
 const validateReq=require("../utils/validateSchema")
+const mongoUrl= process.env.MONGOURL
 
 router.get("/",async (req,res)=>{
 
-   const connection = await mongo.connect("mongodb://localhost:27017/playground")
+   const connection = await mongo.connect(mongoUrl)
    const result= await mongo.get(4)
    res.send(result)
    console.log(`Get ${req.url}`);
 })
 
 router.get("/:id",async (req,res)=>{
-    const connection = await mongo.connect("mongodb://localhost:27017/playground")
+    const connection = await mongo.connect(mongoUrl)
     const queryresult = mongo.QueryById(req.params.id)
                 .then((result)=>res.send(result))
                 .catch((err)=>res.status(404).send("404 not found"))
@@ -24,7 +25,7 @@ router.post("/",async (req,res)=>{
     const result= validateReq.validate(req.body,"post");
     if(result.error===null)
     {
-        const connection = await mongo.connect("mongodb://localhost:27017/playground")
+        const connection = await mongo.connect(mongoUrl)
         const result= await mongo.insert(req.body)
         res.status(201).send(result);
         return;
@@ -45,9 +46,10 @@ router.put("/:id",async (req,res)=>{
         return;
     }
     else{
+        const connection = await mongo.connect(mongoUrl)
         const findEntry=mongo.QueryById(req.params.id)
                     .then(async ()=>{
-                        const result=await mongo.update({"_id" : req.params.id},req.body)
+                        const result=await mongo.update({_id : req.params.id},req.body)
                         res.send("Updated")
                     })
                     .catch((err)=>res.status(404).send("404 not found"))
@@ -63,6 +65,7 @@ router.delete("/",async (req,res)=>{
         return;
     }
     else{
+        const connection = await mongo.connect(mongoUrl)
         console.log(req.body.id)
         const findEntry=await mongo.QueryById(req.body.id)
                     .then(()=>{
