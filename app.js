@@ -18,7 +18,6 @@ app.use("/api/courses",courses);
 app.use("/",home);
 app.use("/api/generes",generes);
 
-console.log("atleast here")
 
 if (app.get("env") === "development")
 {
