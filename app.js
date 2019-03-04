@@ -18,7 +18,6 @@ app.use("/api/courses",courses);
 app.use("/",home);
 app.use("/api/generes",generes);
 
-console.log("atleast here")
 
 if (app.get("env") === "development")
 {
@@ -26,4 +25,4 @@ if (app.get("env") === "development")
     app.use(morgan("tiny"));
 }
 
-app.listen(3000);
+app.listen(process.env.PORT||3000);

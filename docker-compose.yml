@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  node_api:
+    build: .
+    environment:
+      - PORT=3000
+      - ENV_IN=docker
+      - MONGOURL= mongodb://mongo:27017/playground 
+    ports:
+      - "3000:3000"
+    networks:
+      - db
+    restart: always
+
+  mongo:
+    image: mongo:4.0.1
+    ports:
+      - "27017:27017"
+    networks:
+      - db
+    restart: always
+
+networks:
+  db:
+    driver: bridge
