@@ -41,17 +41,14 @@ mongod --dbpath ./data/mongo
 ### Run server
 
 ```sh
-npm start
-# alias for
-node bin/www
-```
-
-
-### Run server
-
-```sh
 node app.js
 ```
+### Run server with docker
+```sh
+#Make sure you clone the repo and docker compose is installed in the machine
+docker-compose up
+```
+
 ### Endpoints
 **{get} /courses** : This will fetch all the courses from MongoDB with a rate limiter.  <br />
 
