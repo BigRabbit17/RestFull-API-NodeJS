@@ -22,7 +22,7 @@ async function InsertIntoDb(req){
     console.log(result)
     const closeResults= mongoose.disconnect()
             .then((re)=> console.log(`close connection : ${re}`))
-    
+    return result
 }
 
 async function QueryFromMongo(limit)
@@ -33,6 +33,38 @@ async function QueryFromMongo(limit)
         return result
 }
 
+async function QueryById(id)
+{
+    const Course = mongoose.model("Course",schema)
+    const result= await Course.findById(id)
+    return result
+    
+}
+
+async function Update(query,payload)
+{
+    const Course = mongoose.model("Course",schema)
+    const result= await Course.findOneAndUpdate(query,payload,{new : true})
+    return result
+    
+}
+
+  async function Delete(id)
+{
+    const Course = mongoose.model("Course",schema)
+    const result = await Course.findOneAndRemove({_id : id},(err,data)=>{
+        if(!err)
+        {
+            console.log("deleted")
+        }
+    })
+    console.log(id)
+   
+}
+
 exports.connect=MongoConnection
 exports.insert=InsertIntoDb
 exports.get=QueryFromMongo
+exports.QueryById=QueryById
+exports.update=Update
+exports.delete=Delete

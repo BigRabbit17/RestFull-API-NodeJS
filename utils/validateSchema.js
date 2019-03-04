@@ -16,8 +16,10 @@ function validateSchema(course,verb)
     if(verb==="put")
     {
         const schemaPut={
-            id: Joi.number().integer().min(1).required(),
-            name: Joi.string().min(2).required()
+            name: Joi.string().min(2),
+            author: Joi.string().min(2),
+            tags : Joi.array().items(Joi.string()),
+            ispublished : Joi.boolean()
         }
         return Joi.validate(course,schemaPut);
     }
@@ -25,7 +27,7 @@ function validateSchema(course,verb)
     if(verb === "delete")
     {
         const schemaPut={
-            id: Joi.number().integer().min(1).required(),
+            id: Joi.string().min(1).required(),
         }
         return Joi.validate(course,schemaPut);
 
@@ -34,4 +36,4 @@ function validateSchema(course,verb)
 
 }
 
-exports.validateSchema=validateSchema
+exports.validate=validateSchema
