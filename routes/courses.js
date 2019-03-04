@@ -22,6 +22,7 @@ router.get("/:id",async (req,res)=>{
 
 router.post("/",async (req,res)=>{
     console.log(`Post ${req.url}`);
+    console.log(mongoUrl)
     const result= validateReq.validate(req.body,"post");
     if(result.error===null)
     {
