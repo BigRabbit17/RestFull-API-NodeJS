@@ -1,0 +1,12 @@
+language: node
+
+services:
+  - mongodb
+
+before_install:
+  - node ./app.js &
+  - sleep 15
+
+
+script:
+  - node ./test/api-test.js
