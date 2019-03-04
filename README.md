@@ -1,7 +1,6 @@
 # RestFull-API-NodeJS-MongoDB
 
 [![CI Status](https://travis-ci.org/ranit-geek/RestFull-API-NodeJS.svg)](https://travis-ci.org/ranit-geek/RestFull-API-NodeJS)
-
 [![Dependency Status](https://david-dm.org/ranit-geek/RestFull-API-NodeJS.svg)](https://david-dm.org/ranit-geek/RestFull-API-NodeJS)
 
 
