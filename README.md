@@ -78,6 +78,7 @@ Some of non-standard modules used:
 * [config](https://www.npmjs.com/package/config)
 * [morgan](https://www.npmjs.com/package/morgan)
 * [helmet](https://www.npmjs.com/package/helmet)
+* [chai](https://www.npmjs.com/package/chai)
 
 ## Current TODO
 * Integration of authorization
