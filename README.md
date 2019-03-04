@@ -45,14 +45,15 @@ node app.js
 ```
 ### Run server with docker
 ```sh
-#Make sure you clone the repo and docker compose is installed in the machine
+# Make sure you clone the repo and docker compose is installed in the machine
+# By default the port is 3000
 docker-compose up
 ```
 
 ### Endpoints
-**{get} /courses** : This will fetch all the courses from MongoDB with a rate limiter.  <br />
+**{get} http://localhost:3000/api/courses/** : This will fetch all the courses from MongoDB with a rate limiter.  <br />
 
-**{post} /courses** : This endpoint will allow user to add courses. Request should be made with respect tp proper Json contract.<br />
+**{post} http://localhost:3000/api/courses/** : This endpoint will allow user to add courses. Request should be made with respect tp proper Json contract.<br />
 ```sh
 # contract example
 {
@@ -62,8 +63,8 @@ docker-compose up
   "ispublished": false,
 }
 ```
-**{put} /courses** : This endpoint will allow user to update courses. Request should be made with respect tp proper Json contract.<br />
-**{delete} /courses** : This will allow user to delete  courses from MongoDB  <br />
+**{put} http://localhost:3000/api/courses/{id}** : This endpoint will allow user to update courses. Request should be made with respect tp proper Json contract.<br />
+**{delete} http://localhost:3000/api/courses/** : This will allow user to delete  courses from MongoDB  <br />
 
 ## Modules used
 
