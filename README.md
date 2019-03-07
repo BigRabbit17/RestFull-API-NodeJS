@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/ranit-geek/RestFull-API-NodeJS.svg)](https://david-dm.org/ranit-geek/RestFull-API-NodeJS)
 
 
-`NodeAPI` is REST API server implementation built on top `Node.js` and `Express.js` with `Mongoose.js` for `MongoDB` integration.
+REST API server implementation built on top `Node.js` and `Express.js` with `Mongoose.js` for `MongoDB` integration.
 
 ## Running project
 
